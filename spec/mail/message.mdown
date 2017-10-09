@@ -307,7 +307,24 @@ If the *id* given does not correspond to a Message in the given account, reject 
 
 To **delete a message** to trash, simply change the `mailboxIds` property so it is now in the mailbox with `role == "trash"`, and remove all other mailbox ids.
 
-Regarding **keywords**, a keyword associated with a `true` boolean will be added to the keywords, while a keyword associated with a `false` boolean will be removed from the message flags.
+Note that **keyworks** and **mailboxIds** can be:
+
+ - Either set by specifying their new value
+ - Or use the [RFC-6901 JSON pointer syntax](https://tools.ietf.org/html/rfc6901) for adding or removing some keywords or mailboxIds. The pointer, here, is composed of the name of the property 
+(mailboxIds of keywords) and the name of the item to update (a specific keyword, a specific mailboxId). 
+
+Here is an example of a message being marked as flagged and seen using JSON pointers:
+
+```
+[["setMessages", {
+	"update": {
+		"messageId": {
+			"keywords/$Seen": null,
+			"keywords/$Flagged": true
+		}
+	}
+}, "#0"]]
+```
 
 ### Destroying messages
 
