@@ -307,6 +307,8 @@ If the *id* given does not correspond to a Message in the given account, reject 
 
 To **delete a message** to trash, simply change the `mailboxIds` property so it is now in the mailbox with `role == "trash"`, and remove all other mailbox ids.
 
+Regarding **keywords**, a keyword associated with a `true` boolean will be added to the keywords, while a keyword associated with a `false` boolean will be removed from the message flags.
+
 ### Destroying messages
 
 If the *id* given does not correspond to a Message in the given account, the server MUST reject the destruction with a `notFound` error.
